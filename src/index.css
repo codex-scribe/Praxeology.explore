@@ -1,0 +1,139 @@
+:root {
+  --bg: #fbfaf7;
+  --fg: #1d1f24;
+  --muted: #6b6f78;
+  --accent: #1f2a44;
+  --highlight: #b8862b;
+  --border: #e3e0d8;
+  --card: #ffffff;
+
+  font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171c;
+    --fg: #e6e4df;
+    --muted: #9a9ea8;
+    --accent: #c9d6f0;
+    --highlight: #e8b04b;
+    --border: #2c2f37;
+    --card: #1c1f26;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header,
+.site-footer {
+  padding: 1rem 1.5rem;
+  border-color: var(--border);
+  border-style: solid;
+  border-width: 0;
+}
+
+.site-header {
+  border-bottom-width: 1px;
+}
+
+.site-footer {
+  border-top-width: 1px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.brand-dot {
+  color: var(--highlight);
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.intro p {
+  font-size: 1.15rem;
+}
+
+.chapter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.chapter-list li + li {
+  border-top: 1px solid var(--border);
+}
+
+.chapter-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.chapter-list a:hover {
+  background: color-mix(in srgb, var(--highlight) 10%, transparent);
+}
+
+.chapter-number {
+  min-width: 1.5rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.chapter-title {
+  flex: 1;
+}
+
+.status {
+  font-family: system-ui, sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.breadcrumb {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
