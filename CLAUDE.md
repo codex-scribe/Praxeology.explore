@@ -6,13 +6,13 @@ Pages at https://codex-scribe.github.io/prax.exp/.
 
 ## Commands
 
-| Task          | Command                                                             |
-| ------------- | ------------------------------------------------------------------- |
-| Dev server    | `npm start` — port 5180, `strictPort`, at `/prax.exp/`              |
-| Build         | `npm run build` → `dist/`                                           |
-| Preview build | `npm run preview` — port 5181                                       |
-| Deploy        | push to `main`; `.github/workflows/pages.yml` runs `npm run deploy` |
-| Checks        | `npm run lint`, `npm run prettier`, `npm run typecheck`             |
+| Task          | Command                                                               |
+| ------------- | --------------------------------------------------------------------- |
+| Dev server    | `npm start` — port 5180, `strictPort`, at `/prax.exp/`                |
+| Build         | `npm run build` → `dist/`                                             |
+| Preview build | `npm run preview` — port 5181                                         |
+| Deploy        | push to `master`; `.github/workflows/pages.yml` runs `npm run deploy` |
+| Checks        | `npm run lint`, `npm run prettier`, `npm run typecheck`               |
 
 No backend, no database, no env vars. If persistence is ever needed, use `localStorage`.
 
