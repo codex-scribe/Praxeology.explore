@@ -5,7 +5,7 @@ export default function NotFound() {
     <article>
       <h1>Not found</h1>
       <p>
-        <Link to="/">Back to contents</Link>
+        <Link to="/">Back to the beginning</Link> · <Link to="/outline">Outline</Link>
       </p>
     </article>
   )

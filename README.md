@@ -14,7 +14,7 @@ Live site: https://codex-scribe.github.io/prax.exp/
 | Dev server            | `npm start` (http://localhost:5180/prax.exp/)                                                         |
 | Build                 | `npm run build` → `dist/`                                                                             |
 | Preview built bundle  | `npm run preview` (http://localhost:5181/prax.exp/)                                                   |
-| Deploy                | push to `main`; GitHub Actions runs `npm run deploy` and publishes `dist/` to Pages                   |
+| Deploy                | push to `master`; GitHub Actions runs `npm run deploy` and publishes `dist/` to Pages                 |
 | Lint / format / types | `npm run lint`, `npm run prettier`, `npm run typecheck` (`:fix` variants exist for lint and prettier) |
 
 There is no database and no backend, so there are no migrate commands. No environment variables

@@ -13,16 +13,33 @@ Pages at https://codex-scribe.github.io/prax.exp/.
 | Preview build | `npm run preview` — port 5181                                         |
 | Deploy        | push to `master`; `.github/workflows/pages.yml` runs `npm run deploy` |
 | Checks        | `npm run lint`, `npm run prettier`, `npm run typecheck`               |
+| Tests         | `npm test` (vitest); model tests live beside the models               |
 
 No backend, no database, no env vars. If persistence is ever needed, use `localStorage`.
 
 ## Structure
 
-- `src/content/book.ts` — table of contents (parts → chapters). The site's navigation mirrors
-  Rothbard's chapter and section divisions; add sections here as they get built.
-- `src/pages/` — route components. `src/components/` — shared UI.
+- `/` — the main experience: `src/prologue/`. A white page where "Man acts." fades in, then each
+  click advances through the propositions in `src/prologue/scenes.ts` (currently placeholders).
+- `/outline/...` — the working outline: `src/outline/`. Section-by-section drafts of the book
+  with interactive figures; material is reworked into the main experience as it's built.
+  - `src/outline/sections/<chapter>/` — prose per section, registered in
+    `src/outline/sections/registry.ts`.
+- `src/content/book.ts` — table of contents (parts → chapters → sections, with Scholar's Edition
+  page ranges), shared by both.
+- `src/models/` — pure economic models, tested. `src/components/figures/` — interactive figures.
+- `reference/` (gitignored, never published) holds the Mises Institute's free PDF of the Scholar's
+  Edition. Check section titles, page numbers, and Rothbard's figures against it. Cite pages as
+  printed in the book, not PDF page numbers (for _MES_, PDF page = book page + 65).
 - Routing uses `HashRouter` because GitHub Pages has no SPA fallback. `vite.config.ts` sets
   `base: '/prax.exp/'`; both change if the site moves to its own domain.
+
+## Typography
+
+The look takes its cue from the book, which is set in Janson Text: light, elegant, airy; a white
+field, small capitals for labels, italics for the secondary voice. Janson isn't freely licensed
+for the web, so the site uses EB Garamond (self-hosted via `@fontsource/eb-garamond`), set in the
+`--serif` variable in `src/index.css`.
 
 ## Conventions
 

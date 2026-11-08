@@ -7,10 +7,15 @@
   --border: #e3e0d8;
   --card: #ffffff;
 
-  font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  /* The book is set in Janson Text; EB Garamond is the free stand-in. Change the face here. */
+  --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+
+  font-family: var(--serif);
+  font-size: 18px;
   line-height: 1.6;
   color: var(--fg);
-  background: var(--bg);
+  /* White before anything renders: the landing page opens on a blank white field. */
+  background: #fff;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -40,6 +45,7 @@ a {
 
 .layout {
   min-height: 100vh;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
 }
@@ -70,6 +76,19 @@ a {
 
 .brand-dot {
   color: var(--highlight);
+}
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.brand-section {
+  color: var(--muted);
+  text-decoration: none;
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
 }
 
 .content {
@@ -136,4 +155,668 @@ a {
 .placeholder {
   color: var(--muted);
   font-style: italic;
+}
+
+/* ---------- Series colors for charts (validated light & dark; see dataviz validator) ---------- */
+
+:root {
+  --good-x: #a8741a;
+  --good-y: #2f62a8;
+  --grid: #e9e6de;
+  --sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --good-x: #b8862b;
+    --good-y: #5b8fd9;
+    --grid: #2a2d35;
+  }
+}
+
+/* ---------- Section pages ---------- */
+
+.section-page h1 {
+  margin-bottom: 0.25rem;
+  line-height: 1.25;
+}
+
+.section-label {
+  color: var(--highlight);
+}
+
+.source {
+  margin-top: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--fg);
+}
+
+.section-page h2 {
+  margin-top: 2.25rem;
+  font-size: 1.35rem;
+}
+
+.callout {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 3px solid var(--highlight);
+  background: var(--card);
+  border-radius: 0 8px 8px 0;
+}
+
+.callout h3 {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  font-family: var(--sans);
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.15rem;
+  font-style: italic;
+  border-left: 3px solid var(--accent);
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  font-style: normal;
+  color: var(--muted);
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+}
+
+.section-group {
+  margin: 0;
+  padding: 0.6rem 1rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.chapter-list a.subsection {
+  padding-left: 2.25rem;
+}
+
+.pages {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Figures ---------- */
+
+.figure {
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.figure-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.figure-title {
+  font-weight: 600;
+}
+
+.figure-basis {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.figure figcaption {
+  margin-top: 0.85rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.figure-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.figure button {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.figure button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.figure button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.figure button[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.figure button.link-button,
+.link-button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
+.stepper,
+.toggle-group,
+.preset-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.stepper-label {
+  color: var(--muted);
+  margin-right: 0.25rem;
+}
+
+.stepper output {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper button {
+  width: 2rem;
+  padding: 0.2rem 0;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.figure-body.two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .figure-body.two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.figure-body.stacked > svg {
+  max-width: 620px;
+  margin: 0 auto 1rem;
+}
+
+.stacked .joint-scale {
+  columns: 2 14rem;
+  column-gap: 1.5rem;
+}
+
+.stacked .joint-scale li {
+  break-inside: avoid;
+}
+
+.readout {
+  margin-top: 0.75rem;
+}
+
+.readout p {
+  margin: 0.35rem 0;
+}
+
+.readout .aside {
+  color: var(--muted);
+}
+
+.list-title {
+  margin: 0 0 0.4rem;
+  color: var(--muted);
+}
+
+/* ---------- SVG charts ---------- */
+
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.chart text {
+  fill: var(--muted);
+  font-size: 11px;
+  font-family: var(--sans);
+}
+
+.chart .axis-title {
+  fill: var(--muted);
+  font-size: 11.5px;
+}
+
+.chart .grid line,
+.chart line.grid {
+  stroke: var(--grid);
+  stroke-width: 1;
+}
+
+.chart line.grid.faint {
+  stroke-dasharray: 2 3;
+}
+
+.chart .arrow {
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.chart .arrow-head {
+  fill: var(--fg);
+}
+
+.chart .bracket {
+  fill: color-mix(in srgb, var(--highlight) 12%, transparent);
+  stroke: var(--highlight);
+  stroke-width: 2;
+}
+
+.chart .dot circle:first-child {
+  stroke: var(--card);
+  stroke-width: 2;
+  transition: fill 0.15s;
+}
+
+.chart .dot .hit {
+  fill: transparent;
+  stroke: none;
+}
+
+.chart .dot.served circle:first-child {
+  fill: var(--accent);
+}
+
+.chart .dot.marginal circle:first-child {
+  fill: var(--highlight);
+  stroke: var(--fg);
+  stroke-width: 2;
+}
+
+.chart .dot.next circle:first-child {
+  fill: var(--card);
+  stroke: var(--highlight);
+  stroke-dasharray: 3 2;
+}
+
+.chart .dot.unserved circle:first-child {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.good-X .dot.held circle:first-child,
+.good-X .dot.marginal circle:first-child {
+  fill: var(--good-x);
+}
+
+.good-Y .dot.held circle:first-child,
+.good-Y .dot.marginal circle:first-child {
+  fill: var(--good-y);
+}
+
+.good-X .dot.next circle:first-child {
+  stroke: var(--good-x);
+}
+
+.good-Y .dot.next circle:first-child {
+  stroke: var(--good-y);
+}
+
+/* ---------- Value-scale lists ---------- */
+
+.value-scale,
+.joint-scale {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.value-scale li,
+.joint-scale li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+}
+
+.joint-scale li {
+  padding: 0.12rem 0.5rem;
+}
+
+.vs-rank {
+  min-width: 1.4rem;
+  text-align: right;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.vs-end {
+  flex: 1;
+}
+
+.vs-tag {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.figure button.vs-raise {
+  padding: 0 0.4rem;
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+.vs-served {
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+.vs-marginal {
+  background: color-mix(in srgb, var(--highlight) 18%, transparent);
+  box-shadow: inset 3px 0 0 var(--highlight);
+}
+
+.vs-next {
+  box-shadow: inset 0 0 0 1px var(--highlight);
+}
+
+.vs-unserved .vs-end {
+  color: var(--muted);
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+}
+
+.joint-scale .good-X .swatch {
+  color: var(--good-x);
+}
+
+.joint-scale .good-Y .swatch {
+  color: var(--good-y);
+}
+
+.joint-scale li.held .swatch {
+  background: currentColor;
+}
+
+.joint-scale li:not(.held) .vs-end {
+  color: var(--muted);
+}
+
+/* ---------- Timeline ---------- */
+
+.timeline .axis {
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.timeline .axis.faint {
+  stroke: var(--muted);
+  stroke-dasharray: 4 3;
+}
+
+.timeline .tick-mark {
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.timeline .point-label {
+  fill: var(--fg);
+  font-size: 13px;
+  font-style: italic;
+  font-family: Georgia, serif;
+}
+
+.timeline .seg-label {
+  fill: var(--fg);
+  font-size: 11.5px;
+}
+
+.timeline .seg.working {
+  fill: var(--accent);
+}
+
+.timeline .seg.maturing {
+  stroke: var(--accent);
+  stroke-width: 1;
+}
+
+.timeline .hatch {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.timeline .seg.serving {
+  fill: var(--highlight);
+}
+
+.timeline .seg.faded {
+  opacity: 0.45;
+}
+
+/* ---------- Structure of production ---------- */
+
+.stages {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.stage {
+  flex: 1 1 0;
+  min-width: 6.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.stage h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.stage ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stage li {
+  margin: 0.3rem 0;
+  padding: 0.25rem 0.4rem;
+  border-radius: 5px;
+  line-height: 1.3;
+}
+
+.stage li.produced {
+  background: color-mix(in srgb, var(--highlight) 16%, transparent);
+  box-shadow: inset 3px 0 0 var(--highlight);
+}
+
+.kind-badge {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.stage-arrow {
+  align-self: center;
+  font-size: 1.4rem;
+  color: var(--highlight);
+}
+
+/* ---------- Action-or-not cards ---------- */
+
+.cases {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.6rem;
+}
+
+.cases li {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.cases li.right {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.cases li.wrong {
+  box-shadow: inset 3px 0 0 var(--highlight);
+}
+
+.case-behavior {
+  margin: 0 0 0.5rem;
+  font-weight: 500;
+}
+
+.case-why {
+  margin: 0;
+  color: var(--muted);
+}
+
+.case-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* ---------- Deduction map ---------- */
+
+.props {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.figure .props button {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  width: 100%;
+  margin: 0.15rem 0;
+  text-align: left;
+  border-color: transparent;
+  background: none;
+}
+
+.props li:first-child button {
+  font-weight: 600;
+}
+
+.props li.premise button {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.props li.consequence button {
+  background: color-mix(in srgb, var(--highlight) 14%, transparent);
+}
+
+.figure .props li.selected button {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.prop-num {
+  min-width: 1.2rem;
+  color: inherit;
+  opacity: 0.65;
+  font-variant-numeric: tabular-nums;
+}
+
+.prop-role {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.prop-detail {
+  position: sticky;
+  top: 1rem;
+  padding: 0.25rem 0 0 1rem;
+  border-left: 1px solid var(--border);
+}
+
+.prop-detail h4 {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.prop-title {
+  font-weight: 600;
+  font-size: 1rem;
 }

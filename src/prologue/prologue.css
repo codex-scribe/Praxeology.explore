@@ -1,0 +1,183 @@
+/* The opening sequence. Modeled on the book's own pages: a white field, a classical serif,
+   small capitals for labels, italics for the secondary voice, and a great deal of space. */
+
+.prologue {
+  --ink: #1d1d1d;
+  --ink-soft: #555;
+  --ink-faint: #a3a3a3;
+  --rule: #dedede;
+
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--serif);
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.prologue-screen {
+  width: min(38rem, 100%);
+  text-align: center;
+  transition: opacity 900ms ease;
+}
+
+.prologue.is-fading .prologue-screen,
+.prologue.is-fading .prologue-nav {
+  opacity: 0;
+}
+
+.pro-fade {
+  opacity: 0;
+  animation: pro-fade-in 1.1s ease forwards;
+}
+
+@keyframes pro-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The title screen spans the full width so the headline can be very large. */
+.prologue-screen.is-title {
+  width: 100%;
+}
+
+/* "Man acts." arrives slowly, after a moment of blank page. Its letters are sized to about a
+   quarter of the viewport's height, capped by width so the phrase never overflows a narrow or
+   portrait screen (the phrase is about 4 em wide). */
+.title-screen h1 {
+  margin: 0;
+  font-size: min(25vh, 21vw);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  white-space: nowrap;
+  animation-duration: 2.6s;
+  animation-delay: 0.9s;
+}
+
+.definition {
+  margin: 0.6em 0 0;
+  font-size: min(4.5vh, 4.2vw);
+  font-style: italic;
+  color: var(--ink-soft);
+  animation-duration: 0.9s;
+}
+
+.scene-number {
+  margin: 0 0 1.75rem;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  color: var(--ink-faint);
+}
+
+.scene h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-wrap: balance;
+  animation-delay: 0.25s;
+  animation-duration: 1.4s;
+}
+
+.scene-placeholder {
+  margin: 2.25rem auto 0;
+  max-width: 26rem;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  animation-delay: 1.1s;
+}
+
+.scene-links {
+  margin: 2.25rem 0 0;
+  font-size: 1.1rem;
+  color: var(--ink-faint);
+  animation-delay: 0.9s;
+}
+
+.prologue a,
+.prologue button {
+  font: inherit;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.prologue a:hover,
+.prologue button:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink-soft);
+}
+
+.prologue-nav {
+  position: fixed;
+  top: 1.4rem;
+  right: 1.9rem;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  font-size: 1.05rem;
+  transition: opacity 900ms ease;
+}
+
+.prologue-nav a {
+  color: var(--ink-faint);
+  border-bottom: none;
+}
+
+.prologue-hint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 2.25rem;
+  margin: 0;
+  text-align: center;
+  font-variant: small-caps;
+  letter-spacing: 0.16em;
+  font-size: 1rem;
+  color: var(--ink-faint);
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  pointer-events: none;
+}
+
+.prologue-hint.shown {
+  opacity: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pro-fade {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+  }
+
+  .prologue-screen,
+  .prologue-nav {
+    transition: none;
+  }
+}

@@ -1,11 +1,14 @@
 import { Link, Outlet } from 'react-router'
 
-export default function Layout() {
+export default function OutlineLayout() {
   return (
     <div className="layout">
       <header className="site-header">
         <Link to="/" className="brand">
           Praxeology<span className="brand-dot">.explore</span>
+        </Link>
+        <Link to="/outline" className="brand-section">
+          Outline
         </Link>
       </header>
       <main className="content">
