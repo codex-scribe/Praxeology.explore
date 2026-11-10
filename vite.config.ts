@@ -4,8 +4,8 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages serves the site from /prax.exp/. Change to '/' if moved to its own domain.
-  base: '/prax.exp/',
+  // GitHub Pages serves the site from /Praxeology.explore/ (the repo name). Change to '/' if moved to its own domain.
+  base: '/Praxeology.explore/',
   server: { port: 5180, strictPort: true },
   preview: { port: 5181, strictPort: true },
 })

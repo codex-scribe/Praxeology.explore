@@ -1,14 +1,14 @@
-# Praxeology.explore (repo: prax.exp)
+# Praxeology.explore (GitHub repo: Praxeology.explore; local folder: prax.exp)
 
 A static website of interactive explorations of _Man, Economy, and State_ (with _Power and
 Market_) by Murray N. Rothbard. Personal project of GitHub user `codex-scribe`; hosted on GitHub
-Pages at https://codex-scribe.github.io/prax.exp/.
+Pages at https://codex-scribe.github.io/Praxeology.explore/.
 
 ## Commands
 
 | Task          | Command                                                               |
 | ------------- | --------------------------------------------------------------------- |
-| Dev server    | `npm start` — port 5180, `strictPort`, at `/prax.exp/`                |
+| Dev server    | `npm start` — port 5180, `strictPort`, at `/Praxeology.explore/`      |
 | Build         | `npm run build` → `dist/`                                             |
 | Preview build | `npm run preview` — port 5181                                         |
 | Deploy        | push to `master`; `.github/workflows/pages.yml` runs `npm run deploy` |
@@ -32,7 +32,7 @@ No backend, no database, no env vars. If persistence is ever needed, use `localS
   Edition. Check section titles, page numbers, and Rothbard's figures against it. Cite pages as
   printed in the book, not PDF page numbers (for _MES_, PDF page = book page + 65).
 - Routing uses `HashRouter` because GitHub Pages has no SPA fallback. `vite.config.ts` sets
-  `base: '/prax.exp/'`; both change if the site moves to its own domain.
+  `base: '/Praxeology.explore/'`; both change if the site moves to its own domain.
 
 ## Typography
 
