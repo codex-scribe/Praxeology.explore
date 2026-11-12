@@ -53,6 +53,12 @@
   width: 100%;
 }
 
+/* The definition hangs below the headline, outside the layout, so its arrival doesn't make the
+   centered block taller and nudge "Man acts." upward. */
+.title-screen {
+  position: relative;
+}
+
 /* "Man acts." arrives slowly, after a moment of blank page. Its letters are sized to about a
    quarter of the viewport's height, capped by width so the phrase never overflows a narrow or
    portrait screen (the phrase is about 4 em wide). */
@@ -68,6 +74,10 @@
 }
 
 .definition {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   margin: 0.6em 0 0;
   font-size: min(4.5vh, 4.2vw);
   font-style: italic;
