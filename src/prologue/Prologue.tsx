@@ -80,12 +80,14 @@ export default function Prologue() {
   }, [step])
 
   const onClick = (e: MouseEvent) => {
-    if (e.target instanceof Element && e.target.closest('a, button')) return
+    // Clicks on links, buttons, and illustrations are theirs, not a request to move on.
+    if (e.target instanceof Element && e.target.closest('a, button, [data-interactive]')) return
     goTo(step + 1)
   }
 
   const screen = screenOf(step)
   const scene = typeof screen === 'number' ? scenes[screen] : undefined
+  const Illustration = scene?.illustration
 
   return (
     <main className={`prologue${fading ? ' is-fading' : ''}`} onClick={onClick}>
@@ -94,7 +96,7 @@ export default function Prologue() {
       </p>
 
       <div
-        className={`prologue-screen${screen === 'title' ? ' is-title' : ''}`}
+        className={`prologue-screen${screen === 'title' ? ' is-title' : ''}${Illustration ? ' is-wide' : ''}`}
         key={String(screen)}
         aria-live="polite"
       >
@@ -111,7 +113,11 @@ export default function Prologue() {
           <section className="scene" aria-label={`Proposition ${screen + 1}`}>
             <p className="pro-fade scene-number">{ROMAN[screen] ?? screen + 1}</p>
             <h2 className="pro-fade">{scene.statement}</h2>
-            <p className="pro-fade scene-placeholder">{scene.placeholder}</p>
+            {Illustration ? (
+              <Illustration />
+            ) : (
+              <p className="pro-fade scene-placeholder">{scene.placeholder}</p>
+            )}
           </section>
         )}
 

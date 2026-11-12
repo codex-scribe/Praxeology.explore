@@ -1,0 +1,155 @@
+/* "Only individuals act.": phrases dragged onto one person or a crowd. */
+
+.only-individuals {
+  margin-top: 2.5rem;
+  cursor: default;
+  animation-delay: 0.9s;
+}
+
+.oi-phrases {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem 1.5rem;
+}
+
+.prologue .oi-phrase {
+  position: relative;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--ink);
+  border-bottom: 1px dashed var(--ink-faint);
+  cursor: grab;
+  touch-action: none;
+}
+
+.prologue .oi-phrase.is-dragging {
+  z-index: 2;
+  cursor: grabbing;
+}
+
+.prologue .oi-phrase.is-selected {
+  border-bottom: 1px solid var(--ink);
+}
+
+/* Column widths follow the two drawings' widths, so both are drawn at the same scale. */
+.oi-stages {
+  display: grid;
+  grid-template-columns: 150fr 240fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.prologue .oi-stage {
+  display: block;
+  width: 100%;
+  padding: 0.25rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: default;
+}
+
+.prologue .oi-stage:hover {
+  border-color: transparent;
+}
+
+.prologue .oi-stage.is-over,
+.only-individuals.has-selection .oi-stage:hover {
+  border-color: var(--rule);
+  cursor: pointer;
+}
+
+.oi-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oi-art * {
+  vector-effect: non-scaling-stroke;
+}
+
+.oi-art .paper {
+  fill: #fff;
+}
+
+.oi-art .oi-slot {
+  stroke-width: 3;
+}
+
+.oi-art text {
+  stroke: none;
+  font-family: var(--serif);
+}
+
+.oi-puzzled {
+  font-size: 14px;
+  fill: var(--ink-soft);
+}
+
+.oi-label {
+  font-size: 8px;
+  font-style: italic;
+  fill: var(--ink-soft);
+}
+
+.oi-jiggle {
+  animation: oi-jiggle 0.14s ease-in-out 4;
+}
+
+@keyframes oi-jiggle {
+  25% {
+    transform: translateX(-1.2px);
+  }
+  75% {
+    transform: translateX(1.2px);
+  }
+}
+
+.oi-foot {
+  margin: 1rem 0 0;
+  min-height: 1.5em;
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+}
+
+.prologue .oi-foot button {
+  color: var(--ink-faint);
+  border-bottom: none;
+  letter-spacing: inherit;
+}
+
+.prologue .oi-foot button:hover {
+  color: var(--ink-soft);
+}
+
+/* On a narrow screen, side by side would draw everyone too small: stack the two drawings. */
+@media (max-width: 600px) {
+  .oi-phrases {
+    justify-content: center;
+  }
+
+  .oi-stages {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.5rem;
+  }
+
+  .prologue .oi-stage-one {
+    max-width: 62%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oi-jiggle {
+    animation: none;
+  }
+}

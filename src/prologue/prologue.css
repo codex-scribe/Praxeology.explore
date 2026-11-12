@@ -48,6 +48,11 @@
   }
 }
 
+/* A scene with an illustration needs more room than a statement alone. */
+.prologue-screen.is-wide {
+  width: min(48rem, 100%);
+}
+
 /* The title screen spans the full width so the headline can be very large. */
 .prologue-screen.is-title {
   width: 100%;
