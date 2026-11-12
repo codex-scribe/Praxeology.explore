@@ -176,6 +176,67 @@
   opacity: 1;
 }
 
+.fine-print {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0 1rem;
+  cursor: default;
+  pointer-events: none;
+  transition: opacity 900ms ease;
+}
+
+.fine-print.is-fading {
+  opacity: 0;
+}
+
+.fine-print > * {
+  pointer-events: auto;
+}
+
+.prologue .fine-print-toggle {
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-faint);
+  border-bottom: none;
+  animation-delay: 1.6s;
+}
+
+.prologue .fine-print-toggle:hover {
+  color: var(--ink-soft);
+}
+
+.fine-print-panel {
+  order: -1;
+  width: min(34rem, 100%);
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 1.1rem 1.5rem 1rem;
+  background: #fff;
+  border: 1px solid var(--rule);
+  box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 6%);
+  text-align: left;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  user-select: text;
+  animation: pro-fade-in 0.4s ease;
+}
+
+.fine-print-panel ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.fine-print-panel li + li {
+  margin-top: 0.6rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -192,7 +253,12 @@
   }
 
   .prologue-screen,
-  .prologue-nav {
+  .prologue-nav,
+  .fine-print {
     transition: none;
+  }
+
+  .fine-print-panel {
+    animation: none;
   }
 }

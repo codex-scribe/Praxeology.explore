@@ -12,6 +12,8 @@ export interface Scene {
   illustration?: ComponentType
   /** Shown beneath the statement until the scene's illustration is built. */
   placeholder?: string
+  /** Qualifications, opened from a "(fine print)" link at the foot of the screen. */
+  finePrint?: string[]
 }
 
 export const scenes: Scene[] = [
@@ -19,6 +21,10 @@ export const scenes: Scene[] = [
     id: 'individuals',
     statement: 'Only individuals act.',
     illustration: OnlyIndividuals,
+    finePrint: [
+      'People can coordinate their actions, as when friends sit down to a game of poker or millions vote in an election. Even then, what happens is individuals each acting, together: each person chooses to take part and does their own share.',
+      'Turns of phrase like a country “fighting back against inflation” or the workers “expressing their consciousness” are not examples of action in this sense. They are metaphors for what particular people do: officials who change a policy, workers who strike or march.',
+    ],
   },
   {
     id: 'one-at-a-time',

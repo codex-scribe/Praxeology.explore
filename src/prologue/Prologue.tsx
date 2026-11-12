@@ -30,12 +30,14 @@ export default function Prologue() {
   const [step, setStep] = useState(0)
   const [fading, setFading] = useState(false)
   const [hint, setHint] = useState(false)
+  const [finePrintOpen, setFinePrintOpen] = useState(false)
   const timer = useRef<number | undefined>(undefined)
 
   const goTo = useCallback(
     (next: number) => {
       if (fading || next < 0 || next > END || next === step) return
       setHint(false)
+      setFinePrintOpen(false)
       if (screenOf(next) === screenOf(step)) {
         setStep(next)
         return
@@ -58,6 +60,10 @@ export default function Prologue() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setFinePrintOpen(false)
+        return
+      }
       // Leave keys alone when a link or button has focus, so Enter still follows links.
       if (e.target instanceof Element && e.target.closest('a, button')) return
       if ([' ', 'Enter', 'ArrowRight', 'ArrowDown', 'PageDown'].includes(e.key)) {
@@ -82,6 +88,11 @@ export default function Prologue() {
   const onClick = (e: MouseEvent) => {
     // Clicks on links, buttons, and illustrations are theirs, not a request to move on.
     if (e.target instanceof Element && e.target.closest('a, button, [data-interactive]')) return
+    // With the fine print open, a click elsewhere just closes it.
+    if (finePrintOpen) {
+      setFinePrintOpen(false)
+      return
+    }
     goTo(step + 1)
   }
 
@@ -141,9 +152,37 @@ export default function Prologue() {
         </nav>
       )}
 
-      <p className={`prologue-hint${hint && !fading ? ' shown' : ''}`} aria-hidden>
-        click to continue
-      </p>
+      {scene?.finePrint ? (
+        // Screens with fine print offer it at the foot in place of the "click to continue" hint.
+        <div
+          className={`fine-print${fading ? ' is-fading' : ''}`}
+          key={`fine-print-${String(screen)}`}
+          data-interactive
+        >
+          {finePrintOpen && (
+            <div className="fine-print-panel" id="fine-print-panel">
+              <ul>
+                {scene.finePrint.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <button
+            type="button"
+            className="pro-fade fine-print-toggle"
+            aria-expanded={finePrintOpen}
+            aria-controls="fine-print-panel"
+            onClick={() => setFinePrintOpen(!finePrintOpen)}
+          >
+            {finePrintOpen ? '(close)' : '(fine print)'}
+          </button>
+        </div>
+      ) : (
+        <p className={`prologue-hint${hint && !fading ? ' shown' : ''}`} aria-hidden>
+          click to continue
+        </p>
+      )}
     </main>
   )
 }
